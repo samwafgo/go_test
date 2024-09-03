@@ -52,6 +52,5 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: go_test
         asset_name: go_test
-        asset_content_type: application/octet-stream
-      continue-on-error: true    
+        asset_content_type: application/octet-stream 
 
