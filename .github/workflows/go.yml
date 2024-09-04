@@ -44,9 +44,7 @@ jobs:
         tag_name: v1
         release_name: v1
         draft: false
-        prerelease: false
-    - name: set value
-      run: echo "release_out_upload_url=${{ steps.create_release.outputs.upload_url }}" >> $GITHUB_ENV 
+        prerelease: false 
     - name: Upload Release Assets
       uses: actions/upload-release-asset@v1
       env:
@@ -85,7 +83,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ env.release_out_upload_url }}
+        upload_url: ${{ jobs.linuxbuild.steps.create_release.outputs.upload_url }}
         asset_path: go_test.exe
         asset_name: go_test.exe
         asset_content_type: application/octet-stream
