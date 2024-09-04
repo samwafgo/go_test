@@ -8,7 +8,9 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+env:
+  release_out_upload_url: emptynull
+  
 jobs:
   linuxbuild:
     runs-on: ubuntu-latest
@@ -43,7 +45,9 @@ jobs:
         release_name: v1
         draft: false
         prerelease: false
-
+    - name: set value
+      run: |
+       ${{ env.release_out_upload_url= steps.create_release.outputs.upload_url }}
     - name: Upload Release Assets
       uses: actions/upload-release-asset@v1
       env:
@@ -53,7 +57,7 @@ jobs:
         asset_path: go_test
         asset_name: go_test
         asset_content_type: application/octet-stream 
-        
+      
   windowsbuild:
     runs-on: windows-latest
     steps:
@@ -82,7 +86,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        upload_url: ${{ env.release_out_upload_url }}
         asset_path: go_test.exe
         asset_name: go_test.exe
         asset_content_type: application/octet-stream
+    needs: linuxbuild  
