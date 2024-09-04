@@ -23,6 +23,8 @@ builds:
       - CGO_CFLAGS=-Wno-unused-function
       - CGO_CFLAGS=-Werror=implicit-function-declaration
       - CGO_CFLAGS=-Werror=unused-variable
+      - CC=x86_64-linux-gnu-gcc
+      - CXX=x86_64-linux-gnu-g++
     goos:
       - linux
     goarch:
@@ -33,8 +35,6 @@ builds:
       - -X go_test/global.GWAF_RELEASE_VERSION={{.Tag}}
       - -s -w
       - -extldflags "-static"
-      - CC=x86_64-linux-gnu-gcc
-      - CXX=x86_64-linux-gnu-g++
   - id: "go_test_win"
     env:
       - CGO_ENABLED=1
