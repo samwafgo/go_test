@@ -56,10 +56,10 @@ upx:
   - # Whether to enable it or not.
     #
     # Templates: allowed.
-    enabled: false
+    enabled: true
 
     # Filter by build ID.
-    ids: [go_test_win]
+    ids: [go_test_win,go_test_linux]
 
     # Filter by GOOS.
     goos: [windows,linux]
