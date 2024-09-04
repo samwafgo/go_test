@@ -46,8 +46,7 @@ jobs:
         draft: false
         prerelease: false
     - name: set value
-      run: |
-       ${{ env.release_out_upload_url= steps.create_release.outputs.upload_url }}
+      run: echo "release_out_upload_url=${{ steps.create_release.outputs.upload_url }}" >> $GITHUB_ENV 
     - name: Upload Release Assets
       uses: actions/upload-release-asset@v1
       env:
