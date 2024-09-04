@@ -1,7 +1,9 @@
 name: goreleaser
 
 on:
-  push
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
@@ -23,7 +25,7 @@ jobs:
       - name: Install dependencies for Windows cross-compilation
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-mingw-w64-x86-64 gcc-mingw-w64-i686
+          sudo apt-get install -y gcc-mingw-w64-x86-64 gcc-mingw-w64-i686 x86_64-linux-gnu-g++ x86_64-w64-mingw32-gcc
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4
