@@ -26,6 +26,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y gcc-mingw-w64-x86-64 gcc-mingw-w64-i686 build-essential
+          
+      - name: Pull Vue UI 
+        run: |
+          curl -L https://github.com/samwafgo/web_test/releases/latest/download/dist.tar.gz -o dist.tar.gz
+          tar -zxvf dist.tar.gz
+          rm -rf public/dist
+          mv -f dist public
+          rm -rf dist.tar.gz 
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4
