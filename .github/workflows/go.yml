@@ -83,6 +83,9 @@ jobs:
       with:
         name: my-bin.exe
         path: go_test.exe
+    - name: echo linux
+      run: |
+       echo "${{ needs.linuxbuild.outputs.release_out_upload_url }}"    
     - name: Upload Release Assets
       uses: actions/upload-release-asset@v1
       env:
