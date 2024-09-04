@@ -47,6 +47,9 @@ jobs:
         release_name: v1
         draft: false
         prerelease: false
+    - name: set output
+      id: set_upload_url
+      run: echo "upload_url=${{steps.create_release.outputs.upload_url}}" >> $GITHUB_OUTPUT  
     - name: echo vars
       run: |
        echo "${{steps.create_release.outputs.upload_url}}"    
