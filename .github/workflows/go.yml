@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main_tmp" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main_tmp" ]
 env:
   release_out_upload_url: emptynull
   
