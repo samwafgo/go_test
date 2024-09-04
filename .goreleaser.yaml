@@ -14,6 +14,11 @@ before:
     - go mod tidy
     # you may remove this if you don't need go generate
     - go generate ./...
+    - curl -L https://github.com/samwafgo/web_test/releases/latest/download/dist.tar.gz -o dist.tar.gz
+    - tar -zxvf dist.tar.gz
+    - rm -rf public/dist
+    - mv -f dist public
+    - rm -rf dist.tar.gz
 
 builds:
   - id: "go_test_linux"
