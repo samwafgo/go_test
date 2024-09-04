@@ -19,7 +19,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	db.AutoMigrate(&User{})
+	err = db.AutoMigrate(&User{})
+	if err != nil {
+		return
+	}
 	db.Delete(&User{})
 
 	user := User{Name: "Jinzhu", Age: 18}
