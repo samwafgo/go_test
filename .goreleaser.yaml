@@ -16,7 +16,7 @@ before:
     - go generate ./...
 
 builds:
-  - id: "go_test"
+  - id: "go_test_linux"
     env:
       - CGO_ENABLED=1 
       - CGO_CFLAGS=-Wno-unused-variable
@@ -24,8 +24,26 @@ builds:
       - CGO_CFLAGS=-Werror=implicit-function-declaration
       - CGO_CFLAGS=-Werror=unused-variable
     goos:
-      - windows
       - linux
+    goarch:
+      - amd64
+    ldflags:
+      - -X go_test/global.GWAF_RELEASE=true
+      - -X go_test/global.GWAF_RELEASE_VERSION_NAME={{ time "20060102" }}
+      - -X go_test/global.GWAF_RELEASE_VERSION={{.Tag}}
+      - -s -w
+      - -extldflags "-static"
+  - id: "go_test_win"
+    env:
+      - CGO_ENABLED=1
+      - CGO_CFLAGS=-Wno-unused-variable
+      - CGO_CFLAGS=-Wno-unused-function
+      - CGO_CFLAGS=-Werror=implicit-function-declaration
+      - CGO_CFLAGS=-Werror=unused-variable
+      - CC=x86_64-w64-mingw32-gcc
+      - CXX=x86_64-w64-mingw32-g++
+    goos:
+      - windows
     goarch:
       - amd64
     ldflags:
@@ -41,7 +59,7 @@ upx:
     enabled: false
 
     # Filter by build ID.
-    ids: [go_test]
+    ids: [go_test_win]
 
     # Filter by GOOS.
     goos: [windows,linux]
