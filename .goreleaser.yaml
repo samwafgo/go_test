@@ -61,7 +61,7 @@ upx:
     enabled: true
 
     # Filter by build ID.
-    ids: [go_test_win,go_test_linux]
+    ids: [go_test_win]
 
     # Filter by GOOS.
     goos: [windows,linux]
