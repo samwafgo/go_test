@@ -18,11 +18,7 @@ before:
 builds:
   - id: "go_test_linux"
     env:
-      - CGO_ENABLED=1 
-      - CGO_CFLAGS=-Wno-unused-variable
-      - CGO_CFLAGS=-Wno-unused-function
-      - CGO_CFLAGS=-Werror=implicit-function-declaration
-      - CGO_CFLAGS=-Werror=unused-variable
+      - CGO_ENABLED=1
       - CC=x86_64-linux-gnu-gcc
       - CXX=x86_64-linux-gnu-g++
     goos:
