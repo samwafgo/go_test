@@ -57,16 +57,7 @@ upx:
     enabled: true
 
     # Filter by build ID.
-    ids: [go_test_win]
-
-    # Filter by GOOS.
-    goos: [windows,linux]
-
-    # Filter by GOARCH.
-    goarch: [amd64]
-
-    # Filter by GOAMD64.
-    goamd64: [v1]
+    ids: [go_test_win,go_test_linux]
 
     # Compress argument.
     # Valid options are from '1' (faster) to '9' (better), and 'best'.
