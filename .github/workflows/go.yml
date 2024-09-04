@@ -14,6 +14,8 @@ env:
 jobs:
   linuxbuild:
     runs-on: ubuntu-latest
+    outputs:
+      release_out_upload_url: ${{ steps.set_upload_url.outputs.upload_url }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up Go
@@ -86,7 +88,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{steps.create_release.outputs.upload_url }}
+        upload_url: ${{ jobs.linuxbuild.outputs.release_out_upload_url }}
         asset_path: go_test.exe
         asset_name: go_test.exe
         asset_content_type: application/octet-stream
