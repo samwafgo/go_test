@@ -83,7 +83,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ jobs.linuxbuild.steps.create_release.outputs.upload_url }}
+        upload_url: ${{ linuxbuild.steps.create_release.outputs.upload_url }}
         asset_path: go_test.exe
         asset_name: go_test.exe
         asset_content_type: application/octet-stream
